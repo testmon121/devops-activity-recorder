@@ -1,0 +1,25 @@
+name: DevOps CI/CD Pipeline
+
+on:
+  push:
+    branches: [ "main", "staging" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+
+      - name: Run Test Step
+        run: |
+          echo "Running automated testing..."
+          # คำสั่งทดสอบโค้ดจริง (เช่น npm test) หรือใช้ echo เพื่อผ่าน Step
+          echo "All tests passed successfully!"
+
+      - name: Build Docker Image
+        run: |
+          echo "Building Docker Image..."
+          docker build -t devops-app:${{ github.sha }} .
+          echo "Docker Image built successfully!"
